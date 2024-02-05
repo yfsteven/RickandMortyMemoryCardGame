@@ -1,0 +1,11 @@
+.morty--card h1 {
+    color: red;
+    font-size: 1.2rem;
+}
+
+.morty--card {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin: 5px;
+}

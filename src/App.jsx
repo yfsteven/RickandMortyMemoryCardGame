@@ -8,22 +8,22 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const theSmiths = await getCharacter([1, 2, 3, 4, 5 ]);
-      const data =  await theSmiths.data
+      const mortys = await getCharacter([ 2, 118, 206, 43, 44, 61, 73, 77, 83, 84, 95, 123, 53, 113, 143, 18, 21, 27, 42, 14 ]);
+      const data =  await mortys.data
       setCharacter([data])
     } catch (error) {
       console.log("error", error);
     }
   };
-
+ 
   useEffect(() => {
     fetchData(); 
   }, []);
-  console.log(characters[0])
+
   return (
-    <div>
-     {characters.length > 0 ? characters[0].map(({id, image}) => {
-        return <Card key={id} photo={image} />
+    <div className="cards--container">
+     {characters.length > 0 ? characters[0].map(({id, name, image}) => {
+        return <Card id={id} title={name} photo={image} />
       }) : <p>Loading</p>}
     </div>
   )
@@ -51,6 +51,6 @@ const [characters, setCharacters] = useState([]);
     </div>
   )
 */
-*/
+
 
 export default App
