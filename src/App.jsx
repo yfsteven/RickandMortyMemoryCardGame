@@ -8,7 +8,7 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const mortys = await getCharacter([ 2, 118, 206, 43, 44, 61, 73, 77, 83, 84, 95, 123, 53, 113, 143, 18, 21, 27, 42, 14 ]);
+      const mortys = await getCharacter([ 2, 118, 206, 43, 44, 61, 73, 77, 83, 84, 95, 123, 53, 113, 143, 18, 21, 27, 42, 14, 392 ]);
       const data =  await mortys.data
       setCharacter([data])
     } catch (error) {
@@ -22,9 +22,9 @@ function App() {
 
   return (
     <div className="cards--container">
-     {characters.length > 0 ? characters[0].map(({id, name, image}) => {
+     {characters.length > 0 && characters[0].map(({id, name, image}) => {
         return <Card id={id} title={name} photo={image} />
-      }) : <p>Loading</p>}
+      })}
     </div>
   )
 }
