@@ -4,8 +4,9 @@ import './Card.css'
 const Card = (props) => {
   return (
    <div className="morty--card" key={props.id}>
+    <h1 className="space--ontop"></h1>
     <img src={props.photo} />
-    <h1>{props.title}</h1>
+    <h1 className="morty--name">{props.title}</h1>
    </div>
   )
 }
