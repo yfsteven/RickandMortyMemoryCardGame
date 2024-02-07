@@ -21,19 +21,32 @@ function App() {
       setMortyStatus([]);
       setCount(0);
     }
-    console.log(mortyStatus);
   }
+  
+  let mortyArray = [ 2, 118, 206, 43, 44, 61, 73, 77, 83, 84, 95, 123, 53, 113, 143, 18, 21, 27, 42, 14, 392 ];
   
   const fetchData = async () => {
     try {
-      const mortys = await getCharacter([ 2, 118, 206, 43, 44, 61, 73, 77, 83, 84, 95, 123, 53, 113, 143, 18, 21, 27, 42, 14, 392 ]);
+      const mortys = await getCharacter(mortyArray);
+      console.log(mortyArray)
       const data =  await mortys.data
-      setCharacter([data])
+      setCharacter([data]);
     } catch (error) {
       console.log("error", error);
     }
   };
 
+  const recordHighScore = () => {
+    if(count > highScore) {
+      setHighScore(count);
+    }
+  }
+
+  const shuffle = arr => [...arr].sort(() => Math.random() - 0.5);
+
+  useEffect(() => {
+    recordHighScore();
+  }), [increment];
  
   useEffect(() => {
     fetchData(); 
@@ -54,29 +67,6 @@ function App() {
     </div>
   )
 }
-
-/*
-/*
-const [characters, setCharacters] = useState([]);
-
-  useEffect(() => {
-    async function getCharacters() {
-      const res = await fetch("https://rickandmortyapi.com/api/character");
-      const data = await res.json();
-
-      setCharacters(data.results);
-    }
-    getCharacters();
-  }, [])
-  console.log(characters);
-  return (
-    <div>
-      {characters.length > 0 ? characters.map(({id, image}) => {
-        return <Card key={id} photo={image}/>
-      }) : <div>Loading..</div>}
-    </div>
-  )
-*/
 
 
 export default App
