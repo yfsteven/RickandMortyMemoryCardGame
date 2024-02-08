@@ -41,7 +41,7 @@ function App() {
   }
 
   const shuffle = () => {
-    const shuffledMortys = [...characters, ...characters].sort(() => Math.random() - 0.5);
+    const shuffledMortys = [...characters].sort(() => Math.random() - 0.5);
 
     setCharacter(shuffledMortys);
   }
