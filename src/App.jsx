@@ -14,6 +14,7 @@ function App() {
   }
 
   const noClickTwice = (id) => {
+    shuffle();
     if (!mortyStatus.includes(id)) {
       increment();
       setMortyStatus([...mortyStatus, id]);
@@ -22,15 +23,12 @@ function App() {
       setCount(0);
     }
   }
-  
-  let mortyArray = [ 2, 118, 206, 43, 44, 61, 73, 77, 83, 84, 95, 123, 53, 113, 143, 18, 21, 27, 42, 14, 392 ];
-  
+  const mortyArray = [ 2, 118, 206, 43, 44, 61, 73, 77, 83, 84, 95, 123, 53, 113, 143, 18, 21, 27, 42, 14, 392 ];
   const fetchData = async () => {
     try {
       const mortys = await getCharacter(mortyArray);
-      console.log(mortyArray)
       const data =  await mortys.data
-      setCharacter([data]);
+      setCharacter(data);
     } catch (error) {
       console.log("error", error);
     }
@@ -42,7 +40,12 @@ function App() {
     }
   }
 
-  const shuffle = arr => [...arr].sort(() => Math.random() - 0.5);
+  const shuffle = () => {
+    const shuffledMortys = [...characters, ...characters].sort(() => Math.random() - 0.5);
+
+    setCharacter(shuffledMortys);
+  }
+
 
   useEffect(() => {
     recordHighScore();
@@ -59,7 +62,7 @@ function App() {
         <h1>Current Score: {count} High Score: {highScore}</h1>
       </div>
       <div className="cards--container">
-      {characters.length > 0 && characters[0].map(({id, name, image}) => {
+      {characters.length > 0 && characters.map(({id, name, image}) => {
           return <Card id={id} title={name} photo={image} click={(x) => {noClickTwice(x);}}/>
         })}
       </div>
